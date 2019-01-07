@@ -1,4 +1,4 @@
-package edu.redcom.tool;
+package edu.redcom.main;
 
 import java.io.BufferedReader;
 import java.io.File;

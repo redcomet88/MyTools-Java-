@@ -1,8 +1,12 @@
 package edu.redcom.dao;
 
+import edu.redcom.model.EvaluateRecord;
+import edu.redcom.model.EvaluateStatistics;
 import edu.redcom.util.JDBCUtil;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JscxDao {
     /**
@@ -94,5 +98,99 @@ public class JscxDao {
             JDBCUtil.close(pstmt);
             JDBCUtil.close(rs);
         }
+    }
+
+
+    public static void addEvaRecordStatistics(EvaluateStatistics es, int count, String year) {
+        String sql = "insert into t_evaluate_record_statistics(eva_dah,eva_zw,zzsx1,zzsx2,zzsx3,zzsx4,ywzs1,ywzs2,ywzs3,ywzs4,gztd1,gztd2,gztd3," +
+                "gztd4,wcgz1,wcgz2,wcgz3,wcgz4,zjsf1,zjsf2,zjsf3,zjsf4,zhpj1,zhpj2,zhpj3,zhpj4," +
+                "rzjy1,rzjy2,rzjy3,rzjy4,zongji,eva_year) " +
+                "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            connection = JDBCUtil.getConnection();
+            pstmt = connection.prepareStatement(sql);
+            // 自定义数据
+            pstmt.setString(1, es.evaDah);
+            pstmt.setString(2, es.zw);
+            pstmt.setInt(3,es.zzsx[0]) ;
+            pstmt.setInt(4,es.zzsx[1]);
+            pstmt.setInt(5,es.zzsx[2]);
+            pstmt.setInt(6,es.zzsx[3]);
+            pstmt.setInt(7,es.ywzs[0]) ;
+            pstmt.setInt(8,es.ywzs[1]);
+            pstmt.setInt(9,es.ywzs[2]);
+            pstmt.setInt(10,es.ywzs[3]);
+            pstmt.setInt(11,es.gztd[0]) ;
+            pstmt.setInt(12,es.gztd[1]);
+            pstmt.setInt(13,es.gztd[2]);
+            pstmt.setInt(14,es.gztd[3]);
+            pstmt.setInt(15,es.wcgz[0]) ;
+            pstmt.setInt(16,es.wcgz[1]);
+            pstmt.setInt(17,es.wcgz[2]);
+            pstmt.setInt(18,es.wcgz[3]);
+            pstmt.setInt(19,es.zjsf[0]) ;
+            pstmt.setInt(20,es.zjsf[1]);
+            pstmt.setInt(21,es.zjsf[2]);
+            pstmt.setInt(22,es.zjsf[3]);
+            pstmt.setInt(23,es.zhpj[0]) ;
+            pstmt.setInt(24,es.zhpj[1]);
+            pstmt.setInt(25,es.zhpj[2]);
+            pstmt.setInt(26,es.zhpj[3]);
+            pstmt.setInt(27,es.rzjy[0]) ;
+            pstmt.setInt(28,es.rzjy[1]);
+            pstmt.setInt(29,es.rzjy[2]);
+            pstmt.setInt(30,es.rzjy[3]);
+            pstmt.setInt(31,count);
+            pstmt.setString(32,year);
+            // 自定义数据 END
+            pstmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.close(connection);
+            JDBCUtil.close(pstmt);
+            JDBCUtil.close(rs);
+        }
+    }
+
+    public static List<EvaluateRecord> findRecordByEvaDah(String dah) {
+        List<EvaluateRecord> records = new ArrayList();
+        EvaluateRecord record = null;
+        Connection connection = null;
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        String sql = "select * from t_evaluate_record where eva_dah = ?";
+        try {
+            connection = JDBCUtil.getConnection();
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1,dah);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                record = new EvaluateRecord();
+                record.setEvaDah(rs.getString(3));
+                record.setZzsx(rs.getDouble(5));
+                record.setYwzs(rs.getDouble(6));
+                record.setGztd(rs.getDouble(7));
+                record.setWcgz(rs.getDouble(8));
+                record.setZjsf(rs.getDouble(9));
+                record.setZhpj(rs.getDouble(10));
+                record.setRzjy(rs.getDouble(11));
+                //record.setWcgz(rs.getDouble(5));
+                records.add(record);
+            }
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        finally {
+            JDBCUtil.close(connection);
+            JDBCUtil.close(pstmt);
+            JDBCUtil.close(rs);
+        }
+        return records;
     }
 }
