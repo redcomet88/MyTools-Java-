@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class JDBCUtil {
 	private static final String Driver = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost:3306/jscx?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
+	private static final String URL = "jdbc:mysql://172.21.9.90:3306/jscx?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
 	private static final String username = "myuser";
 	private static final String password = "123456";
 
@@ -19,10 +19,8 @@ public class JDBCUtil {
 			Class.forName(Driver);
 			connection=DriverManager.getConnection(URL,username,password);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return connection;
@@ -33,7 +31,6 @@ public class JDBCUtil {
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -43,7 +40,6 @@ public class JDBCUtil {
 			try {
 				pstmt.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -54,7 +50,6 @@ public class JDBCUtil {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
