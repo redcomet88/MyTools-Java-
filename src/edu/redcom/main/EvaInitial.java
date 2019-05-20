@@ -1,4 +1,4 @@
-package edu.redcom.tool;
+package edu.redcom.main;
 
 import edu.redcom.constant.EvaConstant;
 import edu.redcom.dao.JscxDao;
