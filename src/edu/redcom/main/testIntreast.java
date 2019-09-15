@@ -1,15 +1,7 @@
 package edu.redcom.main;
 
-import edu.redcom.constant.EvaConstant;
-import edu.redcom.dao.JscxDao;
-import edu.redcom.util.MD5;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 /**
- * 计算利息
+ * 计算信用卡的刷卡利息  【闪付+正常组合】
  */
 public class testIntreast {
 

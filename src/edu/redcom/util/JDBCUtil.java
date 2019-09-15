@@ -10,8 +10,9 @@ import java.sql.SQLException;
 public class JDBCUtil {
 	private static final String Driver = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://172.21.9.90:3306/jscx?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
-	private static final String username = "myuser";
-	private static final String password = "123456";
+	//不用的时候注释起来
+	private static final String username = "";
+	private static final String password = "";
 
 	public static Connection getConnection() {//获取数据库连接
 		Connection connection=null;

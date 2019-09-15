@@ -1,4 +1,4 @@
-package edu.redcom.tool;
+package edu.redcom.main;
 
 import edu.redcom.constant.EvaConstant;
 import edu.redcom.dao.JscxDao;
@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * 日期工具类
+ * 日期工具类： 循环生成日期区间段内的日期
  */
 public class DateUtil {
 
